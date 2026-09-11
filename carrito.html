@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Carrito - MotoShop</title>
     <link rel="stylesheet" href="css/style-carrito.css">
+	<script src="js/carrito.js" defer></script>
 </head>
 <body>
 	<header>
@@ -21,31 +22,14 @@
 
 		<section aria-labelledby="productos-carrito">
 			<h3 id="productos-carrito">Productos seleccionados</h3>
-
-			<article>
-				<h4>Casco integral deportivo</h4>
-				<p>Precio unitario: $120</p>
-				<label for="cantidad-casco">Cantidad:</label>
-				<input type="number" id="cantidad-casco" name="cantidad-casco" value="1" min="1">
-				<p>Subtotal: $120</p>
-				<button type="button">Eliminar producto</button>
-			</article>
-
-			<article>
-				<h4>Guantes para motociclista</h4>
-				<p>Precio unitario: $45</p>
-				<label for="cantidad-guantes">Cantidad:</label>
-				<input type="number" id="cantidad-guantes" name="cantidad-guantes" value="1" min="1">
-				<p>Subtotal: $45</p>
-				<button type="button">Eliminar producto</button>
-			</article>
+			<div id="carrito-productos"></div>
 		</section>
 
 		<aside aria-labelledby="resumen-compra">
 			<h3 id="resumen-compra">Resumen de compra</h3>
-			<p>Subtotal: $165</p>
+			<p>Subtotal: <span id="subtotal-carrito">$0</span></p>
 			<p>Envío: Por calcular</p>
-			<p>Total: $165</p>
+			<p>Total: <span id="total-carrito">$0</span></p>
 			<button type="button">Finalizar compra</button>
 		</aside>
 	</main>
