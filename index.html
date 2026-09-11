@@ -1,13 +1,131 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="module" src="/js/main.js"></script>
+    <title>MotoShop - Accesorios y Equipamiento</title>
 </head>
 <body>
-    <img src="imgs/logo.jpg" alt="" srcset="">
+
+    <header>
+        <nav>
+            <h1>MotoShop</h1>
+            
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+            </ul>
+
+            <div>
+                <a href="login.html" title="Iniciar sesión o Registrarse">
+                    <span>👤</span> Mi Cuenta
+                </a>
+
+                <a href="carrito.html" title="Ver Carrito de Compras">
+                    <span>🛒</span> Carrito (<span id="contador-carrito">0</span>)
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Equipamiento de Protección, Personalización y Accesorios</h2>
+            <p>Encuentra cascos de alta gama, indumentaria con protecciones certificadas y detalles únicos para tu moto.</p>
+        </section>
+
+        <section id="catalogo">
+            <h2>Catálogo de Productos</h2>
+
+            <section>
+                <h3>Cascos Certificados</h3>
+
+                <article>
+                    <img src="img/casco-agv-k3.jpg" alt="Casco integral AGV K3 Negro Mate">
+                    <h4>Casco AGV K3 Solid Negro Mate</h4>
+                    <p>Categoría: Cascos Integrales | Certificación ECE 22.06 | Calota termoplástica de alta resistencia</p>
+                    <p>Precio: $259.900 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+
+                <article>
+                    <img src="img/casco-shoei-gtair3.jpg" alt="Casco integral Shoei GT-Air 3">
+                    <h4>Casco Shoei GT-Air 3</h4>
+                    <p>Categoría: Cascos Premium | Calota AIM multifibra orgánica | Visor solar integrado</p>
+                    <p>Precio: $699.000 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+            </section>
+
+            <section>
+                <h3>Chaquetas, Guantes y Rodilleras</h3>
+
+                <article>
+                    <img src="img/chaqueta-alpinestars-andes.jpg" alt="Chaqueta moto Alpinestars Andes V3 Drystar">
+                    <h4>Chaqueta Alpinestars Andes V3 Drystar</h4>
+                    <p>Categoría: Chaquetas | 100% impermeable, forro térmico desmontable y protecciones Nucleon Flex Plus en hombros y codos</p>
+                    <p>Precio: $319.900 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+
+                <article>
+                    <img src="img/guantes-alpinestars-faster.jpg" alt="Guantes de cuero Alpinestars Faster">
+                    <h4>Guantes Alpinestars Faster</h4>
+                    <p>Categoría: Guantes | Cuero de alta resistencia con tejido elástico y protector rígido de nudillos</p>
+                    <p>Precio: $89.000 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+
+                <article>
+                    <img src="img/rodilleras-scoyco-k12.jpg" alt="Rodilleras articuladas Scoyco K12">
+                    <h4>Rodilleras Articuladas Scoyco K12</h4>
+                    <p>Categoría: Protecciones | Carcasa exterior de polipropileno inyectado con doble pivote anatómico</p>
+                    <p>Precio: $42.900 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+            </section>
+
+            <section>
+                <h3>Personalización y Coleccionables</h3>
+
+                <article>
+                    <img src="img/kit-adhesivos-moto.jpg" alt="Kit de calcomanías y protectores de estanque">
+                    <h4>Kit de Protectores Tank Pad + Gráficas Personalizables</h4>
+                    <p>Categoría: Personalizables | Resina epóxica 3D resistente a rayaduras, sol y combustible</p>
+                    <p>Precio: $24.900 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+
+                <article>
+                    <img src="img/pato-casco-manillar.jpg" alt="Patito amarillo de goma con casco de hélice para manillar">
+                    <h4>Patito Motociclista para Manillar con Casco y Hélice</h4>
+                    <p>Categoría: Juguetes y Accesorios | Decoración para manubrio con luz LED integrada y timbre chillón</p>
+                    <p>Precio: $6.900 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+
+                <article>
+                    <img src="img/maisto-yamaha-r1-escala.jpg" alt="Maqueta de moto a escala 1:12 Yamaha YZF-R1 Maisto">
+                    <h4>Moto a Escala 1:12 Maisto Yamaha YZF-R1</h4>
+                    <p>Categoría: Juguetes y Colección | Réplica oficial diecast de metal fundido con partes de plástico articuladas</p>
+                    <p>Precio: $19.990 CLP</p>
+                    <button type="button">Ver Detalle</button>
+                    <button type="button">Añadir al Carrito</button>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <p>&copy; 2026 MotoPro Store - Equipamiento y Accesorios. Todos los derechos reservados.</p>
+        <p>Contacto: contacto@motoprostore.cl | Santiago, Chile</p>
+    </footer>
+
 </body>
 </html>
