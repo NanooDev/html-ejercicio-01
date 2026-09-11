@@ -42,7 +42,32 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             card.classList.remove('is-flipped');
         });
+
+		const addButton = front.querySelector('.btn-primary');
+		const id = `producto-${Array.from(cards).indexOf(card) + 1}`;
+
+		addButton?.addEventListener('click', () => {
+			const carrito = obtenerCarrito();
+			const productoExistente = carrito.find((producto) => producto.id === id);
+
+			if (productoExistente) {
+				productoExistente.cantidad += 1;
+			} else {
+				carrito.push(productoDesdeTarjeta(card, id));
+			}
+
+			guardarCarrito(carrito);
+			actualizarContador();
+
+			const textoOriginal = addButton.textContent;
+			addButton.textContent = 'Añadido ✓';
+			setTimeout(() => {
+				addButton.textContent = textoOriginal;
+			}, 1000);
+		});
     });
+
+	actualizarContador();
 });
 
 const CLAVE_CARRITO = "motoshop-carrito";
@@ -85,29 +110,3 @@ function productoDesdeTarjeta(tarjeta, id) {
 	};
 }
 
-document.querySelectorAll(".product-card").forEach((tarjeta, indice) => {
-	const boton = tarjeta.querySelector(".btn-primary");
-	const id = `producto-${indice + 1}`;
-
-	boton.addEventListener("click", () => {
-		const carrito = obtenerCarrito();
-		const productoExistente = carrito.find((producto) => producto.id === id);
-
-		if (productoExistente) {
-			productoExistente.cantidad += 1;
-		} else {
-			carrito.push(productoDesdeTarjeta(tarjeta, id));
-		}
-
-		guardarCarrito(carrito);
-		actualizarContador();
-
-		const textoOriginal = boton.textContent;
-		boton.textContent = "Añadido ✓";
-		setTimeout(() => {
-			boton.textContent = textoOriginal;
-		}, 1000);
-	});
-});
-
-actualizarContador();
