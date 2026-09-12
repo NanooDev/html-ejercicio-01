@@ -1,11 +1,204 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <title>MotoShop - Equipamiento y Accesorios para Motos</title>
 </head>
-<body>
-    
+<body id="top">
+
+    <header>
+        <nav>
+            <a href="#top" class="brand">
+                Moto<span>Shop</span>
+            </a>
+
+            <div class="user-actions">
+                <a href="cuenta.html" class="btn-user" title="Iniciar sesión o Registrarse">
+                    <span>👤</span> Mi Cuenta
+                </a>
+                <a href="carrito.html" class="btn-cart" title="Ver Carrito de Compras">
+                    <span>🛒</span> Carrito <span id="contador-carrito">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="hero-tag">Equipamiento de alto rendimiento</span>
+            <h2>Protección, estilo y actitud sobre dos ruedas</h2>
+            <p>Cascos certificados, indumentaria técnica y accesorios seleccionados para rodar seguro y con la mejor presencia.</p>
+            <a href="#catalogo" class="btn-hero">Explorar Catálogo</a>
+        </section>
+
+        <section id="catalogo">
+            <div class="section-title">
+                <h2>Nuestra Colección</h2>
+                <p>Equipamiento homologado y accesorios probados en pista y ciudad</p>
+            </div>
+
+            <section class="category-block">
+                <h3>Cascos Certificados</h3>
+                <div class="products-grid">
+                    
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">ECE 22.06</span>
+                            <img src="img/Casco AGV K3 Solid.png" alt="Casco integral AGV K3 Negro Mate">
+                        </div>
+                        <div class="card-content">
+                            <h4>Casco AGV K3 Solid</h4>
+                            <p class="specs">Calota termoplástica de alta absorción, visor anti-rayas y ventilación optimizada.</p>
+                            <p class="price">$259.900 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge premium">Premium</span>
+                            <img src="img/Casco Shoei GT-Air 3.png" alt="Casco Shoei GT-Air 3">
+                        </div>
+                        <div class="card-content">
+                            <h4>Casco Shoei GT-Air 3</h4>
+                            <p class="specs">Calota AIM multifibra orgánica, visor solar interno QSV-2 y acústica de alta gama.</p>
+                            <p class="price">$699.000 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="category-block">
+                <h3>Chaquetas, Guantes y Protecciones</h3>
+                <div class="products-grid">
+                    
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">Impermeable</span>
+                            <img src="img/Chaqueta Alpinestar Andes V3.jpg" alt="Chaqueta Alpinestars Andes V3">
+                        </div>
+                        <div class="card-content">
+                            <h4>Chaqueta Alpinestars Andes V3</h4>
+                            <p class="specs">Membrana Drystar impermeable, forro térmico desmontable y protecciones Nucleon Flex.</p>
+                            <p class="price">$319.900 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">Cuero</span>
+                            <img src="img/Guantes Alpinestars Faster.jpg" alt="Guantes Alpinestars Faster">
+                        </div>
+                        <div class="card-content">
+                            <h4>Guantes Alpinestars Faster</h4>
+                            <p class="specs">Cuero de alta durabilidad, inserciones elásticas y protección rígida en nudillos.</p>
+                            <p class="price">$89.000 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">Articuladas</span>
+                            <img src="img/Rodilleras Scoyco K12.png" alt="Rodilleras Scoyco K12">
+                        </div>
+                        <div class="card-content">
+                            <h4>Rodilleras Scoyco K12</h4>
+                            <p class="specs">Carcasa anatómica de polipropileno con doble pivote y ajuste ergonómico seguro.</p>
+                            <p class="price">$42.900 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="category-block">
+                <h3>Accesorios y Personalización</h3>
+                <div class="products-grid">
+                    
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">Protector</span>
+                            <img src="img/Kit Tank Pad Resina 3D.png" alt="Kit Protectores de Estanque">
+                        </div>
+                        <div class="card-content">
+                            <h4>Kit Tank Pad Resina 3D</h4>
+                            <p class="specs">Resina epóxica anti-rayas para tanque de combustible. Resistente al clima y lavados.</p>
+                            <p class="price">$24.900 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge fun">Divertido</span>
+                            <img src="img/Patito Motociclista para Manillar.png" alt="Patito motociclista de goma con casco y hélice">
+                        </div>
+                        <div class="card-content">
+                            <h4>Patito Motociclista para Manillar</h4>
+                            <p class="specs">Accesorio de goma con casco de hélice giratoria, luz LED y silbato de alerta.</p>
+                            <p class="price">$6.900 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="img-wrapper">
+                            <span class="badge">1:12 Diecast</span>
+                            <img src="img/Moto a Escala Yamaha R1 (Maisto).png" alt="Maqueta Yamaha YZF-R1 Maisto">
+                        </div>
+                        <div class="card-content">
+                            <h4>Moto a Escala Yamaha R1 (Maisto)</h4>
+                            <p class="specs">Réplica en metal fundido y partes plásticas articuladas. Coleccionable oficial.</p>
+                            <p class="price">$19.990 CLP</p>
+                            <div class="card-actions">
+                                <button type="button" class="btn-secondary">Detalle</button>
+                                <button type="button" class="btn-primary">Añadir 🛒</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <h3>Moto<span>Shop</span></h3>
+            <p>Todo el equipamiento y estilo que necesitas para la ruta en un solo lugar.</p>
+            <p class="contact-info">📍 Santiago, Chile | ✉️ contacto@motoshop.cl</p>
+            <p class="copyright">&copy; 2026 MotoShop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

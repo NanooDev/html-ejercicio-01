@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Carrito - MotoShop</title>
+    <link rel="stylesheet" href="css/style-carrito.css">
+	<script src="js/carrito.js" defer></script>
+</head>
+<body>
+	<header>
+		<h1>MotoShop</h1>
+
+		<nav aria-label="Navegación principal">
+			<a href="index.html">Inicio</a>
+			<a href="carrito.html">Carrito</a>
+		</nav>
+	</header>
+
+	<main>
+		<h2>Carrito de compras</h2>
+
+		<section aria-labelledby="productos-carrito">
+			<h3 id="productos-carrito">Productos seleccionados</h3>
+			<div id="carrito-productos"></div>
+		</section>
+
+		<aside aria-labelledby="resumen-compra">
+			<h3 id="resumen-compra">Resumen de compra</h3>
+			<p>Subtotal: <span id="subtotal-carrito">$0</span></p>
+			<p>Envío: Por calcular</p>
+			<p>Total: <span id="total-carrito">$0</span></p>
+			<button type="button" id="finalizar-compra">Finalizar compra</button>
+		</aside>
+	</main>
+
+	<section id="confirmacion-compra" class="confirmacion-compra" hidden aria-live="polite" aria-labelledby="titulo-confirmacion">
+		<div class="confirmacion-contenido" role="dialog" aria-modal="true">
+			<div class="check-exito" aria-hidden="true"><span>✓</span></div>
+			<h2 id="titulo-confirmacion">¡Compra realizada!</h2>
+			<p>Tu compra ha sido procesada correctamente.</p>
+			<button type="button" id="cerrar-confirmacion">Continuar comprando</button>
+		</div>
+	</section>
+
+	<footer>
+		<p>&copy; 2026 MotoShop</p>
+	</footer>
+</body>
+</html>
