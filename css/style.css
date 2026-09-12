@@ -166,6 +166,118 @@ nav {
     color: #e5b5a0;
 }
 
+.compras-panel {
+    position: fixed;
+    top: 86px;
+    right: 28px;
+    width: min(420px, calc(100vw - 32px));
+    max-height: 70vh;
+    overflow: auto;
+    background: rgba(12, 16, 23, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
+    padding: 1rem;
+    z-index: 120;
+}
+
+.compras-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 0.9rem;
+}
+
+.compras-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 0.25rem;
+}
+
+.compras-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-title);
+}
+
+.compras-close {
+    border: none;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-title);
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.compras-vacia {
+    color: var(--text-body);
+    font-size: 0.92rem;
+    margin: 0.5rem 0 0.75rem;
+}
+
+.compras-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.compra-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 0.8rem 0.8rem 0.65rem;
+}
+
+.compra-item-header,
+.compra-total-row,
+.compra-productos li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.compra-item-header {
+    margin-bottom: 0.55rem;
+    font-size: 0.78rem;
+    color: var(--text-body);
+}
+
+.compra-item-header strong {
+    color: var(--text-title);
+    font-size: 0.8rem;
+}
+
+.compra-productos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.42rem;
+}
+
+.compra-productos li {
+    color: var(--text-body);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.compra-total-row {
+    margin-top: 0.7rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-title);
+    font-size: 0.82rem;
+}
+
 .btn-cart {
     border-color: rgba(201, 123, 79, 0.24);
     color: var(--text-title);
