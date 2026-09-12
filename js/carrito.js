@@ -20,6 +20,7 @@ function renderizarCarrito() {
 	const contenedor = document.querySelector("#carrito-productos");
 	const subtotalElemento = document.querySelector("#subtotal-carrito");
 	const totalElemento = document.querySelector("#total-carrito");
+	const finalizarCompra = document.querySelector("#finalizar-compra");
 	const carrito = obtenerCarrito();
 
 	contenedor.replaceChildren();
@@ -75,6 +76,27 @@ function renderizarCarrito() {
 
 	subtotalElemento.textContent = formatoPrecio(subtotal);
 	totalElemento.textContent = formatoPrecio(subtotal);
+	finalizarCompra.disabled = carrito.length === 0;
 }
+
+function mostrarConfirmacion() {
+	const confirmacion = document.querySelector("#confirmacion-compra");
+	confirmacion.hidden = false;
+	document.body.classList.add("compra-finalizada");
+	document.querySelector("#cerrar-confirmacion").focus();
+}
+
+document.querySelector("#finalizar-compra").addEventListener("click", () => {
+	if (obtenerCarrito().length === 0) return;
+
+	guardarCarrito([]);
+	renderizarCarrito();
+	mostrarConfirmacion();
+});
+
+document.querySelector("#cerrar-confirmacion").addEventListener("click", () => {
+	document.querySelector("#confirmacion-compra").hidden = true;
+	document.body.classList.remove("compra-finalizada");
+});
 
 renderizarCarrito();
