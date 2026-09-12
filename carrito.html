@@ -30,9 +30,18 @@
 			<p>Subtotal: <span id="subtotal-carrito">$0</span></p>
 			<p>Envío: Por calcular</p>
 			<p>Total: <span id="total-carrito">$0</span></p>
-			<button type="button">Finalizar compra</button>
+			<button type="button" id="finalizar-compra">Finalizar compra</button>
 		</aside>
 	</main>
+
+	<section id="confirmacion-compra" class="confirmacion-compra" hidden aria-live="polite" aria-labelledby="titulo-confirmacion">
+		<div class="confirmacion-contenido" role="dialog" aria-modal="true">
+			<div class="check-exito" aria-hidden="true"><span>✓</span></div>
+			<h2 id="titulo-confirmacion">¡Compra realizada!</h2>
+			<p>Tu compra ha sido procesada correctamente.</p>
+			<button type="button" id="cerrar-confirmacion">Continuar comprando</button>
+		</div>
+	</section>
 
 	<footer>
 		<p>&copy; 2026 MotoShop</p>
