@@ -1,5 +1,101 @@
 
+const CLAVE_SESION = 'motoshop-sesion';
+
+function obtenerSesion() {
+    try {
+        return JSON.parse(localStorage.getItem(CLAVE_SESION)) || null;
+    } catch {
+        return null;
+    }
+}
+
+function actualizarCuentaNav() {
+    const botonCuenta = document.querySelector('.btn-user');
+    if (!botonCuenta) return;
+
+    const sesion = obtenerSesion();
+
+    if (!sesion || !sesion.email) {
+        const menuExistente = botonCuenta.closest('.user-menu-wrap');
+        if (menuExistente) {
+            menuExistente.replaceWith(botonCuenta);
+        }
+
+        botonCuenta.innerHTML = '<span>👤</span> Mi Cuenta';
+        botonCuenta.classList.remove('is-logged');
+        botonCuenta.setAttribute('href', 'cuenta.html');
+        return;
+    }
+
+    const nombreUsuario = sesion.displayName || sesion.email.split('@')[0];
+    botonCuenta.innerHTML = `<span>👤</span> ${nombreUsuario}`;
+    botonCuenta.title = `Sesión activa: ${sesion.email}`;
+    botonCuenta.classList.add('is-logged');
+    botonCuenta.setAttribute('href', '#');
+
+    const contenedorPadre = botonCuenta.parentElement;
+    if (!contenedorPadre) return;
+
+    const menuExistente = botonCuenta.closest('.user-menu-wrap');
+    if (menuExistente && menuExistente !== contenedorPadre) {
+        menuExistente.replaceWith(botonCuenta);
+    }
+
+    if (contenedorPadre.classList.contains('user-menu-wrap')) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'user-menu-wrap';
+    contenedorPadre.insertBefore(wrapper, botonCuenta);
+    wrapper.appendChild(botonCuenta);
+
+    const menu = document.createElement('div');
+    menu.className = 'user-menu-panel';
+    menu.innerHTML = `
+        <button type="button" class="menu-item" data-action="perfil">Perfil</button>
+        <button type="button" class="menu-item" data-action="compras">Mis compras</button>
+        <button type="button" class="menu-item logout-option" data-action="logout">Cerrar sesión</button>
+    `;
+    wrapper.appendChild(menu);
+
+    botonCuenta.addEventListener('click', (event) => {
+        event.preventDefault();
+        wrapper.classList.toggle('open');
+    });
+
+    menu.querySelectorAll('.menu-item').forEach((item) => {
+        item.addEventListener('click', () => {
+            const accion = item.dataset.action;
+
+            if (accion === 'logout') {
+                localStorage.removeItem(CLAVE_SESION);
+                window.location.href = 'cuenta.html';
+                return;
+            }
+
+            if (accion === 'perfil') {
+                window.location.href = 'cuenta.html';
+                return;
+            }
+
+            if (accion === 'compras') {
+                alert('Aún no tienes compras registradas.');
+            }
+
+            wrapper.classList.remove('open');
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        const clicFuera = !wrapper.contains(event.target);
+        if (clicFuera) {
+            wrapper.classList.remove('open');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    actualizarCuentaNav();
+
     const cards = document.querySelectorAll('.product-card');
 
     cards.forEach((card) => {
