@@ -58,16 +58,21 @@ function renderizarCarrito() {
 		const eliminar = document.createElement("button");
 
 		titulo.textContent = producto.nombre;
+		titulo.className = "nombre-producto";
 		precio.textContent = `Precio unitario: ${producto.precioTexto}`;
+		precio.className = "precio-unitario";
 		descripcion.textContent = producto.descripcion;
+		descripcion.className = "descripcion-producto";
 		etiqueta.textContent = "Cantidad: ";
 		cantidad.type = "number";
 		cantidad.min = "1";
 		cantidad.value = producto.cantidad;
 		cantidad.setAttribute("aria-label", `Cantidad de ${producto.nombre}`);
 		subtotalProducto.textContent = `Subtotal: ${formatoPrecio(producto.precio * producto.cantidad)}`;
+		subtotalProducto.className = "subtotal-producto";
 		eliminar.type = "button";
 		eliminar.textContent = "Eliminar producto";
+		eliminar.className = "eliminar-producto";
 
 		cantidad.addEventListener("change", () => {
 			const nuevaCantidad = Math.max(1, Number.parseInt(cantidad.value, 10) || 1);
