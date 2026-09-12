@@ -35,6 +35,20 @@ function renderizarCarrito() {
 
 	carrito.forEach((producto) => {
 		const articulo = document.createElement("article");
+		articulo.className = "item-carrito";
+
+		const imagen = document.createElement("img");
+		imagen.className = "producto-imagen";
+		imagen.src = producto.imagen || "";
+		imagen.alt = producto.nombre;
+		imagen.loading = "lazy";
+		if (!producto.imagen) {
+			imagen.style.display = "none";
+		}
+
+		const infoProducto = document.createElement("div");
+		infoProducto.className = "info-producto";
+
 		const titulo = document.createElement("h4");
 		const precio = document.createElement("p");
 		const descripcion = document.createElement("p");
@@ -69,7 +83,8 @@ function renderizarCarrito() {
 		});
 
 		etiqueta.append(cantidad);
-		articulo.append(titulo, precio, descripcion, etiqueta, subtotalProducto, eliminar);
+		infoProducto.append(titulo, precio, descripcion, etiqueta, subtotalProducto, eliminar);
+		articulo.append(imagen, infoProducto);
 		contenedor.append(articulo);
 		subtotal += producto.precio * producto.cantidad;
 	});
