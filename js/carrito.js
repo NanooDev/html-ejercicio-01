@@ -94,6 +94,19 @@ function renderizarCarrito() {
 	finalizarCompra.disabled = carrito.length === 0;
 }
 
+function guardarCompraUsuario(compra) {
+	const sesion = JSON.parse(localStorage.getItem('motoshop-sesion') || 'null');
+	if (!sesion || !sesion.email) return;
+
+	const comprasGuardadas = JSON.parse(localStorage.getItem('motoshop-compras') || '{}');
+	if (!Array.isArray(comprasGuardadas[sesion.email])) {
+		comprasGuardadas[sesion.email] = [];
+	}
+
+	comprasGuardadas[sesion.email].push(compra);
+	localStorage.setItem('motoshop-compras', JSON.stringify(comprasGuardadas));
+}
+
 function mostrarConfirmacion() {
 	const confirmacion = document.querySelector("#confirmacion-compra");
 	confirmacion.hidden = false;
@@ -103,6 +116,15 @@ function mostrarConfirmacion() {
 
 document.querySelector("#finalizar-compra").addEventListener("click", () => {
 	if (obtenerCarrito().length === 0) return;
+
+	const carritoActual = obtenerCarrito();
+	const subtotal = carritoActual.reduce((sum, producto) => sum + (producto.precio * producto.cantidad), 0);
+
+	guardarCompraUsuario({
+		fecha: new Date().toISOString(),
+		productos: carritoActual,
+		total: subtotal,
+	});
 
 	guardarCarrito([]);
 	renderizarCarrito();

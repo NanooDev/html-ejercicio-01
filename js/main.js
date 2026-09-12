@@ -1,6 +1,7 @@
 
 const CLAVE_SESION = 'motoshop-sesion';
 const CLAVE_PRODUCTO_PENDIENTE = 'motoshop-producto-pendiente';
+const CLAVE_COMPRAS = 'motoshop-compras';
 
 function obtenerSesion() {
     try {
@@ -79,7 +80,8 @@ function actualizarCuentaNav() {
             }
 
             if (accion === 'compras') {
-                alert('Aún no tienes compras registradas.');
+                mostrarPanelCompras();
+                return;
             }
 
             wrapper.classList.remove('open');
@@ -88,10 +90,99 @@ function actualizarCuentaNav() {
 
     document.addEventListener('click', (event) => {
         const clicFuera = !wrapper.contains(event.target);
+        const clicFueraPanel = !event.target.closest('.compras-panel') && !event.target.closest('[data-action="compras"]');
+
         if (clicFuera) {
             wrapper.classList.remove('open');
         }
+
+        if (clicFueraPanel) {
+            document.querySelector('.compras-panel')?.remove();
+        }
     });
+}
+
+function obtenerComprasUsuario(email) {
+    try {
+        const comprasPorUsuario = JSON.parse(localStorage.getItem(CLAVE_COMPRAS) || '{}');
+        return Array.isArray(comprasPorUsuario[email]) ? comprasPorUsuario[email] : [];
+    } catch {
+        return [];
+    }
+}
+
+function mostrarPanelCompras() {
+    const sesion = obtenerSesion();
+    if (!sesion?.email) {
+        window.location.href = 'cuenta.html';
+        return;
+    }
+
+    document.querySelector('.compras-panel')?.remove();
+
+    const panel = document.createElement('aside');
+    panel.className = 'compras-panel';
+
+    const compras = obtenerComprasUsuario(sesion.email);
+    const comprasOrdenadas = [...compras].reverse();
+
+    panel.innerHTML = `
+        <div class="compras-header">
+            <div>
+                <p class="compras-kicker">Historial</p>
+                <h3>Mis compras</h3>
+            </div>
+            <button type="button" class="compras-close" aria-label="Cerrar compras">&times;</button>
+        </div>
+        ${comprasOrdenadas.length === 0 ? '<p class="compras-vacia">Aún no tienes compras realizadas.</p>' : ''}
+        <div class="compras-lista"></div>
+    `;
+
+    const lista = panel.querySelector('.compras-lista');
+
+    comprasOrdenadas.forEach((compra) => {
+        const compraItem = document.createElement('article');
+        compraItem.className = 'compra-item';
+
+        const fecha = new Date(compra.fecha).toLocaleDateString('es-CL', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+
+        const total = compra.total || compra.productos.reduce((sum, producto) => sum + (producto.precio * producto.cantidad), 0);
+
+        compraItem.innerHTML = `
+            <div class="compra-item-header">
+                <span>Compra</span>
+                <strong>${fecha}</strong>
+            </div>
+            <ul class="compra-productos">
+                ${compra.productos.map((producto) => `
+                    <li>
+                        <span>${producto.nombre} x${producto.cantidad}</span>
+                        <span>${producto.precioTexto}</span>
+                    </li>
+                `).join('')}
+            </ul>
+            <div class="compra-total-row">
+                <span>Total</span>
+                <strong>${formatearPrecio(total)}</strong>
+            </div>
+        `;
+
+        lista.appendChild(compraItem);
+    });
+
+    panel.querySelector('.compras-close')?.addEventListener('click', () => {
+        panel.remove();
+    });
+
+    document.body.appendChild(panel);
+}
+
+function formatearPrecio(precio) {
+    return `$${Number(precio).toLocaleString('es-CL')} CLP`;
 }
 
 function mostrarAvisoAutenticacion(idProducto) {
