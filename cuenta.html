@@ -218,11 +218,11 @@
 
             usuarios.push({ email, password });
             guardarUsuarios(usuarios);
-            alert('Cuenta creada correctamente. Ahora puedes iniciar sesión.');
-
-            document.getElementById('register-form').reset();
-            document.querySelector('[data-tab="login"]').click();
-            document.getElementById('login-email').value = email;
+            localStorage.setItem('motoshop-sesion', JSON.stringify({
+                email,
+                displayName: `${nombre} ${apellido}`
+            }));
+            window.location.href = 'index.html';
         });
 
         mostrarSesionActiva();

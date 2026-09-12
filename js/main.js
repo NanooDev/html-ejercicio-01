@@ -1,5 +1,6 @@
 
 const CLAVE_SESION = 'motoshop-sesion';
+const CLAVE_PRODUCTO_PENDIENTE = 'motoshop-producto-pendiente';
 
 function obtenerSesion() {
     try {
@@ -93,6 +94,35 @@ function actualizarCuentaNav() {
     });
 }
 
+function mostrarAvisoAutenticacion(idProducto) {
+    document.querySelector('.auth-notice')?.remove();
+
+    const aviso = document.createElement('aside');
+    aviso.className = 'auth-notice';
+    aviso.setAttribute('role', 'alertdialog');
+    aviso.setAttribute('aria-labelledby', 'auth-notice-title');
+    aviso.innerHTML = `
+        <button type="button" class="auth-notice-close" aria-label="Cerrar aviso">&times;</button>
+        <span class="auth-notice-icon" aria-hidden="true">👤</span>
+        <div>
+            <strong id="auth-notice-title">Inicia sesión para continuar</strong>
+            <p>Necesitas una cuenta para añadir productos al carrito.</p>
+            <button type="button" class="auth-notice-action">Ir a mi cuenta</button>
+        </div>
+    `;
+
+    document.body.appendChild(aviso);
+
+    aviso.querySelector('.auth-notice-close').addEventListener('click', () => {
+        aviso.remove();
+    });
+
+    aviso.querySelector('.auth-notice-action').addEventListener('click', () => {
+        localStorage.setItem(CLAVE_PRODUCTO_PENDIENTE, idProducto);
+        window.location.href = 'cuenta.html';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     actualizarCuentaNav();
 
@@ -142,28 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		const addButton = front.querySelector('.btn-primary');
 		const id = `producto-${Array.from(cards).indexOf(card) + 1}`;
 
-		addButton?.addEventListener('click', () => {
-			const carrito = obtenerCarrito();
-			const productoExistente = carrito.find((producto) => producto.id === id);
+        addButton?.addEventListener('click', () => {
+            if (!obtenerSesion()?.email) {
+                mostrarAvisoAutenticacion(id);
+                return;
+            }
 
-			if (productoExistente) {
-				productoExistente.cantidad += 1;
-			} else {
-				carrito.push(productoDesdeTarjeta(card, id));
-			}
-
-			guardarCarrito(carrito);
-			actualizarContador();
-
-			const textoOriginal = addButton.textContent;
-			addButton.textContent = 'Añadido ✓';
-			setTimeout(() => {
-				addButton.textContent = textoOriginal;
-			}, 1000);
-		});
+            agregarProductoAlCarrito(card, id, addButton);
+        });
     });
 
 	actualizarContador();
+    procesarProductoPendiente(cards);
 });
 
 const CLAVE_CARRITO = "motoshop-carrito";
@@ -178,6 +198,40 @@ function obtenerCarrito() {
 
 function guardarCarrito(carrito) {
 	localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+}
+
+function agregarProductoAlCarrito(tarjeta, id, boton) {
+    const carrito = obtenerCarrito();
+    const productoExistente = carrito.find((producto) => producto.id === id);
+
+    if (productoExistente) {
+        productoExistente.cantidad += 1;
+    } else {
+        carrito.push(productoDesdeTarjeta(tarjeta, id));
+    }
+
+    guardarCarrito(carrito);
+    actualizarContador();
+
+    const textoOriginal = boton.textContent;
+    boton.textContent = 'Añadido ✓';
+    setTimeout(() => {
+        boton.textContent = textoOriginal;
+    }, 1000);
+}
+
+function procesarProductoPendiente(cards) {
+    const idPendiente = localStorage.getItem(CLAVE_PRODUCTO_PENDIENTE);
+    if (!idPendiente || !obtenerSesion()?.email) return;
+
+    const indice = Number(idPendiente.replace('producto-', '')) - 1;
+    const tarjeta = cards[indice];
+    const boton = tarjeta?.querySelector('.btn-primary');
+
+    localStorage.removeItem(CLAVE_PRODUCTO_PENDIENTE);
+    if (tarjeta && boton) {
+        agregarProductoAlCarrito(tarjeta, idPendiente, boton);
+    }
 }
 
 function precioNumerico(textoPrecio) {
